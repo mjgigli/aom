@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model version="4.0.3" links="0">
+ <framework name="qpcpp"/>
+ <package name="AOs" stereotype="0x02">
+  <class name="Test" superclass="qpcpp::QActive">
+   <attribute name="evt1" type="void" visibility="0x00" properties="0x00">
+    <documentation>event comments</documentation>
+   </attribute>
+   <attribute name="sig1" type="QP::QSignal" visibility="0x00" properties="0x00"/>
+   <attribute name="attr1" type="void" visibility="0x00" properties="0x00"/>
+   <operation name="operation1" type="void" visibility="0x00" properties="0x00">
+    <parameter name="param1" type="void"/>
+    <code>some code</code>
+   </operation>
+   <statechart>
+    <initial target="../1">
+     <initial_glyph conn="10,3,5,0,7,4">
+      <action box="0,-2,10,2"/>
+     </initial_glyph>
+    </initial>
+    <state name="off">
+     <entry brief="heat_off()">more complicated entry action</entry>
+     <tran trig="ON" target="../../2">
+      <action brief="some_on_action()"/>
+      <tran_glyph conn="29,15,1,0,12,12">
+       <action box="0,-2,10,2"/>
+      </tran_glyph>
+     </tran>
+     <state_glyph node="8,7,21,13">
+      <entry box="1,2,6,2"/>
+     </state_glyph>
+    </state>
+    <state name="on">
+     <entry brief="heat_on()"/>
+     <initial target="../3">
+      <initial_glyph conn="43,32,5,0,3,2">
+       <action box="0,-2,10,2"/>
+      </initial_glyph>
+     </initial>
+     <tran trig="OFF" target="../../1">
+      <action brief="some_off_action()"/>
+      <tran_glyph conn="24,37,3,2,-11,-17">
+       <action box="-10,-2,10,2"/>
+      </tran_glyph>
+     </tran>
+     <tran trig="TRIG1" target="../../3">
+      <tran_glyph conn="59,27,0,3,-7,6">
+       <action box="0,-2,10,2"/>
+      </tran_glyph>
+     </tran>
+     <state name="lamp_on">
+      <entry brief="start_timer()"/>
+      <exit brief="stop_timer()"/>
+      <state_glyph node="36,34,17,10">
+       <entry box="1,2,6,2"/>
+       <exit box="1,4,6,2"/>
+      </state_glyph>
+     </state>
+     <state_glyph node="24,27,42,19">
+      <entry box="1,2,6,2"/>
+     </state_glyph>
+    </state>
+    <state name="state2">
+     <state_glyph node="65,14,11,10"/>
+    </state>
+    <state_diagram size="80,50"/>
+   </statechart>
+  </class>
+  <class name="on_evt" superclass="qpcpp::QEvt">
+   <attribute name="on_attr" type="void" visibility="0x00" properties="0x00"/>
+  </class>
+ </package>
+ <package name="package1" stereotype="0x00">
+  <class name="Class1" superclass="qpcpp::QActive"/>
+ </package>
+</model>
